@@ -26,13 +26,18 @@ data class AttractionsData(
     val modified:String,
     val url:String,
     val category:List<Category>,
-    val target: List<String>,
+    val target: List<Any>,
     val service:List<ServiceType>,
     val friendly:List<Any>,
     val images:List<ImageSrc>,
     val files:List<Any>,
     val links:List<Any>
-)
+){
+   fun toAttractionNameAndImage():AttractionNameAndImage{
+       val imageSrc = if(this.images.isNotEmpty()) images[0].src else ""
+       return AttractionNameAndImage(this.name,imageSrc)
+   }
+}
 
 data class Category(
     val id:String,
@@ -48,4 +53,8 @@ data class ImageSrc(
     val ext:String
 )
 
+data class AttractionNameAndImage(
+    val name:String,
+    val image:String,
+)
 

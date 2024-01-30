@@ -3,6 +3,7 @@ package com.judy.demo.taipei.tourism.utils
 import android.content.Context
 import android.widget.ImageView
 import com.bumptech.glide.Glide
+import com.judy.demo.taipei.tourism.R
 
 /** 由網址下載圖片 */
 fun loadImageFromUrl(
@@ -12,6 +13,14 @@ fun loadImageFromUrl(
    width: Int = 500,
    imageView: ImageView
 ) {
-   Glide.with(context).load(url).override(width, height).into(imageView)
+
+   if(url.isNotBlank()){
+      /** 有 url 則由網址載入圖片 */
+      Glide.with(context).load(url).override(width, height).into(imageView)
+   }else{
+      /** 載入預設圖片*/
+      imageView.setImageResource(R.drawable.image)
+   }
+
 }
 

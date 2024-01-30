@@ -1,14 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment.MainFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <include
+        android:id="@+id/TopLayout"
+        layout="@layout/app_bar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <View
+        android:id="@+id/TitleView"
+        android:layout_width="3dp"
+        android:layout_height="15dp"
+        android:layout_marginStart="10dp"
+        android:background="@color/dark_brown"
+        app:layout_constraintTop_toBottomOf="@id/TopLayout"
+        app:layout_constraintBottom_toTopOf="@id/NewsRecyclerView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/NewsTitleTextView"
+        />
+    <TextView
+        android:id="@+id/NewsTitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/newsTitle"
+        app:layout_constraintTop_toBottomOf="@id/TopLayout"
+        app:layout_constraintBottom_toTopOf="@id/NewsRecyclerView"
+        app:layout_constraintStart_toEndOf="@id/TitleView"
+        />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/NewsRecyclerView"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_marginTop="50dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/TopLayout"
+        app:layout_constraintBottom_toTopOf="@id/Guildeline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/Guildeline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5"
+     />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/EndGuildeline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="1"
+        />
+
+    <View
+        android:id="@+id/AttrTitleView"
+        android:layout_width="3dp"
+        android:layout_height="15dp"
+        android:layout_marginStart="10dp"
+        android:background="@color/dark_brown"
+        app:layout_constraintTop_toBottomOf="@id/Guildeline"
+        app:layout_constraintBottom_toTopOf="@id/AttractionsRecyclerView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/AttractionsTitleTextView"
+        />
+    <TextView
+        android:id="@+id/AttractionsTitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/attractionTitle"
+        app:layout_constraintTop_toBottomOf="@id/Guildeline"
+        app:layout_constraintBottom_toTopOf="@id/AttractionsRecyclerView"
+        app:layout_constraintStart_toEndOf="@id/AttrTitleView"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/AttractionsRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:layout_marginTop="50dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="@id/EndGuildeline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/Guildeline" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
