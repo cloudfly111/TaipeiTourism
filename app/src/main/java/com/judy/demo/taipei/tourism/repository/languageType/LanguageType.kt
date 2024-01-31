@@ -1,23 +1,23 @@
 package com.judy.demo.taipei.tourism.repository.languageType
 
 /** 語言類型 */
-enum class LanguageType {
+enum class LanguageType(val type:String) {
     /**正體中文*/
-    ZH_TW ,
+    ZH_TW("zh-tw") ,
     /**簡體中文*/
-    ZH_CN,
+    ZH_CN("zh-cn"),
     /**英文*/
-    EN,
+    EN("en"),
     /**日文*/
-    JA,
+    JA("ja"),
     /**韓文*/
-    KO,
+    KO("ko"),
     /**西班牙文*/
-    ES,
+    ES("es"),
     /**印尼文*/
-    ID,
+    ID("id"),
     /**泰文*/
-    TH,
+    TH("th"),
     /**越南文*/
-    VI
+    VI("vi")
 }

@@ -9,16 +9,10 @@
         android:name="com.judy.demo.taipei.tourism.fragment.MainFragment"
         tools:layout="@layout/fragment_main">
         <action
-            android:id="@+id/action_from_mainFragment_to_newsFragment"
-            app:destination="@id/NewsFragment" />
-        <action
             android:id="@+id/action_from_mainFragment_to_attractionsFragment"
             app:destination="@id/AttractionsFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/NewsFragment"
-        android:name="com.judy.demo.taipei.tourism.fragment.NewsFragment"
-        tools:layout="@layout/fragment_news" />
+
     <fragment
         android:id="@+id/AttractionsFragment"
         android:name="com.judy.demo.taipei.tourism.fragment.AttractionsFragment"

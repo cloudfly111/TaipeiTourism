@@ -11,7 +11,7 @@ class NewsRepo(private val dataSource: List<NewsData>) {
         listData = dataSource
     }
 
-    fun modifiyNewsData(): MutableList<NewsMessage> {
+    suspend fun modifiyNewsData(): MutableList<NewsMessage> {
         for (item in listData) {
             simpleListData.add(item.toNewsMessage())
         }

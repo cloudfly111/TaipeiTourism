@@ -9,10 +9,15 @@ class AttractionsRepo(private val dataSource: List<AttractionsData> ,) {
     init {
         listData = dataSource
     }
-    fun modifiyAttractionsData(): MutableList<AttractionNameAndImage> {
+    suspend fun modifiyAttractionsData(): MutableList<AttractionNameAndImage> {
         for (item in listData){
             simpleListData.add(item.toAttractionNameAndImage())
         }
         return simpleListData
+    }
+
+    suspend fun findDataFromId(id : String):AttractionsData{
+        val targrtData = dataSource.find { data->data.id.equals(id) }
+       return targrtData ?:AttractionsData()
     }
 }

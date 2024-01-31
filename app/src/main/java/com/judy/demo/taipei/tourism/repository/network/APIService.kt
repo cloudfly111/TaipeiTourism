@@ -12,7 +12,6 @@ interface APIService {
     @GET("{lang}/Events/News/")
     fun getNewsData(
         @Path("lang") lang:String,
-        @Query("page") page:Int
     ):Call<APIStruct<NewsData>>
 
     /** 景點 API*/
@@ -20,6 +19,5 @@ interface APIService {
     @GET("{lang}/Attractions/All/")
     fun getAttractionsData(
         @Path("lang") lang:String,
-        @Query("page") page:Int
     ): Call<APIStruct<AttractionsData>>
 }

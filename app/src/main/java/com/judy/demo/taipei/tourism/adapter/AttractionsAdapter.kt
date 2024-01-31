@@ -1,10 +1,14 @@
 package com.judy.demo.taipei.tourism.adapter
 
 import android.content.Context
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.judy.demo.taipei.tourism.MainActivity
+import com.judy.demo.taipei.tourism.R
 import com.judy.demo.taipei.tourism.databinding.ItemAttractionBinding
 import com.judy.demo.taipei.tourism.repository.dataClass.AttractionNameAndImage
 import com.judy.demo.taipei.tourism.repository.dataClass.AttractionsData
@@ -15,7 +19,7 @@ class AttractionsAdapter : ListAdapter<AttractionNameAndImage, AttractionsAdapte
     private var updateType:UpdateType = UpdateType.ALL
 
     inner class ItemViewHolder(val binding: ItemAttractionBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+        RecyclerView.ViewHolder(binding.root)  {
         fun bindContent(updateType: UpdateType,data:AttractionNameAndImage) {
             when(updateType){
                 UpdateType.TITLE -> bindName(data.name)
@@ -29,6 +33,7 @@ class AttractionsAdapter : ListAdapter<AttractionNameAndImage, AttractionsAdapte
                 bindImageFromUrl(data.image)
                 bindName(data.name)
             }
+
         }
         fun bindImageFromUrl(url:String){
             loadImageFromUrl(context = binding.root.context,url=url, imageView = binding.AttractionImageView)
@@ -46,6 +51,11 @@ class AttractionsAdapter : ListAdapter<AttractionNameAndImage, AttractionsAdapte
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val itemData = getItem(position)
         holder.bindContent(updateType,itemData)
+        holder.itemView.setOnClickListener{
+            val bundle = Bundle()
+            bundle.putString("ID",itemData.id)
+            it.findNavController().navigate(R.id.action_from_mainFragment_to_attractionsFragment,bundle)
+        }
     }
 
     override fun onBindViewHolder(

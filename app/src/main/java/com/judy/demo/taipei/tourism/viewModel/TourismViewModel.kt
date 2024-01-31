@@ -10,19 +10,39 @@ import com.judy.demo.taipei.tourism.repository.dataClass.AttractionNameAndImage
 import com.judy.demo.taipei.tourism.repository.dataClass.AttractionsData
 import com.judy.demo.taipei.tourism.repository.dataClass.NewsData
 import com.judy.demo.taipei.tourism.repository.dataClass.NewsMessage
+import com.judy.demo.taipei.tourism.repository.languageType.LanguageType
 import com.judy.demo.taipei.tourism.repository.network.RetrofitInstance
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
-class TourismViewModel: ViewModel() {
+class TourismViewModel : ViewModel() {
     val attractionsData = MutableLiveData<List<AttractionsData>>()
     val newsData = MutableLiveData<List<NewsData>>()
+    val languageType = MutableLiveData<LanguageType>(LanguageType.ZH_TW)
 
 
-    fun modifiyAttractionsData():MutableList<AttractionNameAndImage>{
-        return AttractionsRepo(attractionsData.value!!).modifiyAttractionsData()
+    fun modifiyAttractionsData(): MutableList<AttractionNameAndImage> {
+        var data: MutableList<AttractionNameAndImage> = mutableListOf()
+        viewModelScope.launch {
+            data = async { AttractionsRepo(attractionsData.value!!).modifiyAttractionsData() }.await()
+        }
+        return data
     }
 
-    fun modifiyNewsData():MutableList<NewsMessage>{
-        return NewsRepo(newsData.value!!).modifiyNewsData()
+    fun modifiyNewsData(): MutableList<NewsMessage> {
+        var data: MutableList<NewsMessage> = mutableListOf()
+        viewModelScope.launch {
+            data = async { NewsRepo(newsData.value!!).modifiyNewsData() }.await()
+        }
+        return data
+    }
+
+    fun findAttractionsDataFromId(id:String):AttractionsData{
+        var data:AttractionsData = AttractionsData()
+        viewModelScope.launch {
+            data = async { AttractionsRepo(attractionsData.value!!).findDataFromId(id) }.await()
+        }
+        return data
     }
 }
