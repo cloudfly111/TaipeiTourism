@@ -8,6 +8,7 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
+import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -53,7 +54,7 @@ class MainFragment : Fragment() {
 
         binding.apply {
             TopLayout.AppBar.apply {
-                setNavigationIcon(null)
+                navigationIcon = null
                 setOnMenuItemClickListener(object : Toolbar.OnMenuItemClickListener {
                     override fun onMenuItemClick(item: MenuItem?): Boolean {
                         showLanguageSettingDialog(requireContext())
@@ -72,6 +73,8 @@ class MainFragment : Fragment() {
 
 
             mainActivity.viewModel.newsData.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+                NewsRecyclerView.isVisible=it.isNotEmpty()
+                NoDataLayout.root.isVisible=it.isEmpty()
                 newsAdapter.submitList(mainActivity.viewModel.modifiyNewsData())
             })
 
@@ -118,6 +121,7 @@ class MainFragment : Fragment() {
             TopLayout.AppBar.title = resource.getString(R.string.mainTitle) ?: ""
             NewsTitleTextView.text = resource.getString(R.string.newsTitle) ?: ""
             AttractionsTitleTextView.text = resource.getString(R.string.attractionTitle) ?: ""
+            NoDataLayout.noDataTextView.text = resource.getString(R.string.noData) ?: ""
         }
     }
 

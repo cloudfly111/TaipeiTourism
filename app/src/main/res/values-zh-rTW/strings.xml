@@ -15,4 +15,6 @@
     <string name="indonesian">Bahasa Indonesia</string>
     <string name="thai">แบบไทย</string>
     <string name="vietnamese">Tiếng Việt</string>
+    <string name="noData">無資料</string>
+
 </resources>
