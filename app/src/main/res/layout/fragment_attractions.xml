@@ -20,16 +20,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:constraint_referenced_ids="TopLayout"
         app:barrierDirection="bottom"
-        />
+        app:constraint_referenced_ids="TopLayout" />
+
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/ViewPager2"
         android:layout_width="match_parent"
         android:layout_height="400dp"
         android:foregroundGravity="center"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@id/WebSiteTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/Barrier" />
@@ -38,16 +37,44 @@
         android:id="@+id/WebSiteTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/bg_rect_rounded"
         android:padding="15dp"
         android:text="@string/officialSite"
-        android:background="@drawable/bg_rect_rounded"
-        android:textSize="25sp"
-        android:textColor="@color/dark_green"
         android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="@color/dark_green"
+        android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ViewPager2"
-        />
+        app:layout_constraintTop_toBottomOf="@id/ViewPager2" />
+
+
+        <ScrollView
+            android:id="@+id/ContentScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="100dp"
+            android:fillViewport="true"
+            android:orientation="vertical"
+            android:scrollbarAlwaysDrawVerticalTrack="true"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/WebSiteTextView">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/ContentTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+        </ScrollView>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

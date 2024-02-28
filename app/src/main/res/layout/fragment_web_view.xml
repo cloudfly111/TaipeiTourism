@@ -37,7 +37,7 @@
     <WebView
         android:id="@+id/WebView"
         android:layout_width="match_parent"
-        android:layout_height="600dp"
+        android:layout_height="800dp"
         app:layout_constraintTop_toTopOf="@id/Barrier"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

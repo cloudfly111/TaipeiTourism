@@ -44,7 +44,7 @@ class AttractionsFragment : Fragment() {
 
         binding.ViewPager2.apply {
             val imageList = itemData.images.map { it.src }
-            Log.v("Attractions","imageList=$imageList")
+            Log.v("Attractions", "imageList=$imageList")
             val adpter = ViewPagerAdapter(imageList)
             this.adapter = adpter
             adpter.notifyDataSetChanged()
@@ -52,20 +52,30 @@ class AttractionsFragment : Fragment() {
 
         binding.WebSiteTextView.setOnClickListener {
             val bundle = Bundle().apply {
-                putString("TITLE",itemData.name)
-                putString("URL",itemData.official_site)
+                putString("TITLE", itemData.name)
+                putString("URL", itemData.official_site)
             }
-            findNavController().navigate(R.id.action_from_attractionsFragment_to_webViewFragment,bundle)
+            findNavController().navigate(
+                R.id.action_from_attractionsFragment_to_webViewFragment,
+                bundle
+            )
         }
+        //設定動態ScrollView高度
+        val heightDp = resources.displayMetrics.run { heightPixels / density }
+        var layout = binding.ContentScrollView.layoutParams
+        layout.height = heightDp.toInt()
+        binding.ContentTextView.text = itemData.introduction
 
-        mainActivity.viewModel.languageType.observe(viewLifecycleOwner,androidx.lifecycle.Observer {
-            val newResource =context?.setAppLocale(getLocaleTag(it))?.resources!!
-            updateLanguageStringFromResource(newResource)
-        })
+        mainActivity.viewModel.languageType.observe(
+            viewLifecycleOwner,
+            androidx.lifecycle.Observer {
+                val newResource = context?.setAppLocale(getLocaleTag(it))?.resources!!
+                updateLanguageStringFromResource(newResource)
+            })
 
     }
 
-    fun updateLanguageStringFromResource(resource: Resources){
+    fun updateLanguageStringFromResource(resource: Resources) {
         binding.apply {
             WebSiteTextView.text = resource.getString(R.string.officialSite) ?: ""
         }

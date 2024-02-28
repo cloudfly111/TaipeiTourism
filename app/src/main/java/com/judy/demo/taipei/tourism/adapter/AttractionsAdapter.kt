@@ -32,6 +32,7 @@ class AttractionsAdapter : ListAdapter<AttractionNameAndImage, AttractionsAdapte
             if(updateType==UpdateType.ALL){
                 bindImageFromUrl(data.image)
                 bindName(data.name)
+                bindIntro(data.address)
             }
 
         }
@@ -40,6 +41,9 @@ class AttractionsAdapter : ListAdapter<AttractionNameAndImage, AttractionsAdapte
         }
         fun bindName(name:String){
             binding.NameTextView.text = name
+        }
+        fun bindIntro(introContent:String){
+            binding.AddressView.text = introContent
         }
     }
 

@@ -1,6 +1,7 @@
 package com.judy.demo.taipei.tourism.utils
 
 import android.content.Context
+import android.util.Log
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.judy.demo.taipei.tourism.R
@@ -15,6 +16,7 @@ fun loadImageFromUrl(
 ) {
 
    if(url.isNotBlank()){
+      Log.i("loadImageFromUrl","[$url]")
       /** 有 url 則由網址載入圖片 */
       Glide.with(context).load(url).override(width, height).into(imageView)
    }else{

@@ -35,7 +35,7 @@ data class AttractionsData(
 ) {
     fun toAttractionNameAndImage(): AttractionNameAndImage {
         val imageSrc = if (this.images.isNotEmpty()) images[0].src else ""
-        return AttractionNameAndImage(this.id,this.name, imageSrc)
+        return AttractionNameAndImage(this.id,this.name, imageSrc,this.address)
     }
 }
 
@@ -57,5 +57,6 @@ data class AttractionNameAndImage(
     val id:String,
     val name:String,
     val image:String,
+    val address:String,
 )
 

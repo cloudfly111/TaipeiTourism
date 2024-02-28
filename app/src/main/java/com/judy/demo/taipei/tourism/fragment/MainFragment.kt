@@ -64,6 +64,12 @@ class MainFragment : Fragment() {
                 })
             }
             AttractionsRecyclerView.adapter = attractionsAdapter
+            //設定動態View高度
+            val heightDp = resources.displayMetrics.run { heightPixels / density }
+            Log.i("","heightDp=$heightDp")
+            var layout = binding.AttractionsRecyclerView.layoutParams
+            layout.height = (heightDp*1.2).toInt()
+
 
             mainActivity.viewModel.attractionsData.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
                 attractionsAdapter.submitList(mainActivity.viewModel.modifiyAttractionsData())

@@ -27,7 +27,7 @@ class TourismViewModel : ViewModel() {
         viewModelScope.launch {
             data = async { AttractionsRepo(attractionsData.value!!).modifiyAttractionsData() }.await()
         }
-        return data
+        return data.filter { it.image.isNotEmpty() }.toMutableList()
     }
 
     fun modifiyNewsData(): MutableList<NewsMessage> {

@@ -10,7 +10,12 @@
         tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/action_from_mainFragment_to_attractionsFragment"
-            app:destination="@id/AttractionsFragment" />
+            app:destination="@id/AttractionsFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out"
+            />
     </fragment>
 
     <fragment
@@ -20,7 +25,6 @@
         <action
             android:id="@+id/action_from_attractionsFragment_to_webViewFragment"
             app:destination="@id/WebViewFragment" />
-
     </fragment>
     <fragment
         android:id="@+id/WebViewFragment"
