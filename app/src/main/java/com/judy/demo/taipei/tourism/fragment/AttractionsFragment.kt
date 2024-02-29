@@ -61,9 +61,9 @@ class AttractionsFragment : Fragment() {
             )
         }
         //設定動態ScrollView高度
-        val heightDp = resources.displayMetrics.run { heightPixels / density }
-        var layout = binding.ContentScrollView.layoutParams
-        layout.height = heightDp.toInt()
+//        val heightDp = resources.displayMetrics.run { heightPixels / density }
+//        var layout = binding.ContentScrollView.layoutParams
+//        layout.height = heightDp.toInt()
         binding.ContentTextView.text = itemData.introduction
 
         mainActivity.viewModel.languageType.observe(
